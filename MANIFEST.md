@@ -1,0 +1,24 @@
+# Generated skeleton manifest
+
+- `.gitignore`
+- `LICENSE`
+- `README.md`
+- `data/interim/README.md`
+- `data/processed/README.md`
+- `data/raw/README.md`
+- `docs/dev_notes/roadmap.md`
+- `docs/experimental_notes/collected_stuff_for_pocket_cocktail_party.md`
+- `docs/experimental_notes/fathers_day_matching_game.md`
+- `docs/experimental_notes/synthetic_experiment_0p0_yc_ica.md`
+- `docs/project_admin/repo_setup_description_300_words.md`
+- `docs/project_admin/yellowcard_permission_request.md`
+- `figures/README.md`
+- `pyproject.toml`
+- `scripts/run_synthetic_0p0.py`
+- `src/pocket_cocktail_party/__init__.py`
+- `src/pocket_cocktail_party/alignment.py`
+- `src/pocket_cocktail_party/geometry.py`
+- `src/pocket_cocktail_party/ica.py`
+- `src/pocket_cocktail_party/metrics.py`
+- `src/pocket_cocktail_party/synthesis.py`
+- `tests/test_geometry.py`

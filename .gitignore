@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+
+# Audio/data artifacts can be large or private.
+data/raw/*
+data/interim/*
+data/processed/*
+!data/raw/README.md
+!data/interim/README.md
+!data/processed/README.md
+
+# Generated figures and reports
+figures/*
+!figures/README.md
+
+# OS/editor
+.DS_Store
+Thumbs.db
+*.swp
