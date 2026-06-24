@@ -100,17 +100,33 @@ The first synthetic test uses a **C major add 9** style chord.
 | Violin | D5 | 587.33 Hz |
 | Snare | C4-centered burst | ~261.63 Hz center |
 
+
 Each pitched source is generated as harmonic partials:
 
 $$
-s_i(t)=e_i(t)\sum_{k=1}^{K} c^i_k \sin(2\pi k f_i t).
+s^{(i)}(t)=e^{(i)}(t)\sum_{k=1}^{K} c^{(i)}_k \sin(2\pi k f^{(i)} t).
 $$
+
+The snare drum is modeled in this Experiment 0.0 experiment as a sort of random pitched source. 
 
 The synthetic ensemble is loosely inspired by Yellowcard-style instrumentation: voice, violin, guitar, bass, and drums. Go [Yellowcard](https://www.yellowcardband.com)!
 
 This project is not affiliated with or endorsed by Yellowcard.
 
 ## Geometry
+
+Our synthetic band can be represented simply as situation like this:
+
+```text
+     voice     guitar
+
+
+violin              snare
+
+           bass
+```
+
+Where our bass is being represented by a piano.
 
 For a regular pentagon, the diagonal is $\varphi$ times the side length:
 
@@ -131,6 +147,10 @@ because
 $$
 0.124 \approx \frac{0.200}{1.618}.
 $$
+
+For a microphone at the center of the pentagon and in the same plane, the distance to any instrument is the circumradius. Dividing the pentagon into five triangles, each interior triangle side is a circumradius, whose length we will denote as $R$, and each interior angle is $\frac{2\pi}{5}$. The other two angles of each interior (isosceles) triangle are each $\left(\frac{1}{2}\right)\left(\pi - \frac{2\pi}{5} \right). If we take $L$ as the distance between two adjacent instruments, by the law of sines, 
+
+
 
 For an overhead microphone above the pentagon center,
 
@@ -181,7 +201,13 @@ $$
 \mathbf{X} = \mathbf{A}\mathbf{S}
 $$
 
-This keeps the code aligned with the mathematical model while preserving the conceptual distinction between sources, geometry, and observations.
+### Source type &mdash; harmonic
+
+As they were in the Experiment 0.0, the harmonic sources (pitched instruments) is generated as harmonic partials:
+
+$$
+s^{(i)}(t)=e^{(i)}(t)\sum_{k=1}^{K} c^{(i)}_k \sin(2\pi k f^{(i)} t)
+$$
 
 The snare source is intentionally modeled differently from the pitched
 instruments. Rather than using a harmonic overtone array, it is generated
