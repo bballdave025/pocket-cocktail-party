@@ -1,0 +1,9 @@
+jupyterlab
+ipykernel
+
+numpy
+scikit-learn
+matplotlib
+
+nbformat
+nbconvert[webpdf]

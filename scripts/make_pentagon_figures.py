@@ -510,4 +510,78 @@ def make_pentagon_triangle_figure() -> tuple[Figure, tuple[Axes, Axes]]:
 ##endof:  method (function) make_pentagon_triangle_figure
 
 
+if __name__ == "__main__":
+  '''
+  Called when module is called from the command line.
+  '''
+  
+  ##-----------------------------------------------------------------
+  ##  Roots of Unity (5th roots of unity for pentagon)
+  ##+ Uses the string 'rou' for short
+  filename_rou_only = "pentagon_angles_roots_of_unity.png"
+  
+  ####begin:  Hardcoding, involving the boolean below this begin comment 
+    ##          (for anyone wanting to make the figures in CWD, no repo)
+  do_in_repo_save = True
+  
+  output_path_roots_of_unity = pathlib.Path.cwd() / filename_rou_only
+    ##
+  ####endof:  Hardcoding
+  
+  if do_in_repo_save:
+    #  This assignment assumes that the script is run from
+    #+ `scripts/make_pentagon_figures.py`
+    repo_root = Path(__file__).resolve().parents[1]
+  
+    output_path_roots_of_unity = repo_root / "figures" / filename_rou_only
+  ##endof:  if/else not_do_in_repo_save
+  
+  output_path_roots_of_unity.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+  )
+  
+  fig_rou, ax_rou = make_roots_of_unity_figure()
 
+  fig_rou.savefig(
+      output_path_roots_of_unity,
+      dpi=200,
+      bbox_inches="tight",
+  )
+
+  ##-----------------------------------------------------------------
+  ##  Pentagon triangle derivation of sine value, helping with
+  ##+ length, and also helping with illustrations in general
+  ##+ Uses the string 'tdf' for short. (Started with 'tf', but
+  ##+ don't want confusion with TensorFlow)
+  filename_tdf_only = "pentagon_triangle_derivation.png"
+  
+  ####begin:  Hardcoding, involving the boolean below this begin comment 
+    ##          (for anyone wanting to make the figures in CWD, no repo)
+  do_in_repo_save = True
+  
+  output_path_triangle_figure = pathlib.Path.cwd() / filename_tdf_only
+    ##
+  ####endof:  Hardcoding
+  
+  if do_in_repo_save:
+    #  This assignment assumes that the script is run from
+    #+ `scripts/make_pentagon_figures.py`
+    repo_root = Path(__file__).resolve().parents[1]
+  
+    output_path_triangle_figure = repo_root / "figures" / filename_tdf_only
+  ##endof:  if do_in_repo_save
+  
+  output_path_triangle_figure.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+  )
+  
+  fig_tdf, (top_ax_tdf, bottom_ax_tdf) = make_pentagon_triangle_figure()
+
+  fig_tdf.savefig(
+      output_path_triange_figure,
+      dpi=200,
+      bbox_inches="tight",
+  )
+##endof:  if

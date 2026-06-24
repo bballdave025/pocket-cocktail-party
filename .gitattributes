@@ -1,0 +1,89 @@
+## Default line-ending policy.
+## Auto-detect text files, store normalized LF in Git, and check out LF.
+## This keeps the repo Linux/macOS/tooling friendly even on Windows.
+* text=auto eol=lf
+
+
+## Source code and project text.
+*.py             text eol=lf
+*.sh             text eol=lf
+*.toml           text eol=lf
+*.yaml           text eol=lf
+*.yml            text eol=lf
+*.json           text eol=lf
+*.html           text eol=lf
+*.css            text eol=lf
+*.js             text eol=lf
+*.txt            text eol=lf
+*.log            text eol=lf
+*.out            text eol=lf
+*.csv            text eol=lf
+*.md             text eol=lf
+
+.gitignore       text eol=lf
+.gitattributes   text eol=lf
+.editorconfig    text eol=lf
+
+
+## Windows command scripts.
+## Batch/CMD scripts are safest with CRLF line endings.
+*.bat            text eol=crlf
+*.cmd            text eol=crlf
+
+## PowerShell generally handles LF, but CRLF is acceptable if these are
+## meant mainly for Windows editing/execution.
+*.ps1            text eol=crlf
+
+
+## Jupyter notebooks.
+## These are JSON text, but treating them as non-text avoids line-ending
+## normalization surprises in large notebook files.
+*.ipynb          -text
+
+
+## Archives and document formats.
+*.zip            binary
+*.tar            binary
+*.gz             binary
+*.7z             binary
+*.pdf            binary
+*.docx           binary
+*.doc            binary
+*.rtf            binary
+
+
+## Images.
+*.png            binary
+*.jpg            binary
+*.jpeg           binary
+*.gif            binary
+*.webp           binary
+*.svg            text eol=lf
+
+
+## Audio.
+*.wav            binary
+*.mp3            binary
+*.flac           binary
+*.m4a            binary
+*.ogg            binary
+
+
+## Video.
+*.mp4            binary
+*.mov            binary
+*.avi            binary
+*.mkv            binary
+*.webm           binary
+
+
+## Model / array / data artifacts.
+*.h5             binary
+*.pt             binary
+*.pth            binary
+*.ckpt           binary
+*.npy            binary
+*.npz            binary
+*.pkl            binary
+*.pickle         binary
+```

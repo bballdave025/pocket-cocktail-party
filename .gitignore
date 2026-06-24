@@ -1,9 +1,22 @@
-.venv/
+# @file .gitignore
+# @author David Black     GitHub @bballdave025     "signed" DWB
+# @since 2026-06-14
+# For pocket-cocktail-party
+
+# Python caches
 __pycache__/
-*.py[cod]
-.ipynb_checkpoints/
-.pytest_cache/
-.ruff_cache/
+**/__pycache__/
+*.py[codz]
+*$py.class
+
+# Virtual environments
+.venv/
+.venv_*/
+.venv.*/
+env/
+venv/
+ENV/
+.venv_pocket_cp
 
 # Audio/data artifacts can be large or private.
 data/raw/*
@@ -16,8 +29,60 @@ data/processed/*
 # Generated figures and reports
 figures/*
 !figures/README.md
+!figures/pentagon_angles_roots_of_unity.png
+!figures/pentagon_triangle_derivation.png
 
-# OS/editor
+# Jupyter/IPython local state (Jupyter for presentation/portfolio)
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+# Build/package outputs
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+MANIFEST
+
+# Test/cache/type-check outputs
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.cache/
+cover/
+
+# Editor/OS backup files
+*~
+.*~
+*.un~
+$~*
+~$*
+~WRL*
+~*
 .DS_Store
 Thumbs.db
 *.swp
+
+# Local secrets/config
+.env
+.envrc
+.secrets/
+config_local.py
+
+# Model weights and large checkpoints
+*.h5
+*.pt
+*.pth
+*.ckpt
+
+# Optional local IDE/runtime files
+tempCodeRunnerFile.py
+.pdm-python
+.pdm-build/
+.pixi/
+__pypackages__/
