@@ -6,6 +6,9 @@
 
 The project begins with classical **Independent Component Analysis (ICA)** and deliberately builds outward from clean synthetic assumptions toward messier real-world recordings.
 
+If such is the nature of your business, you might like to check out some 
+[Intellectual Property notes for this project](https://github.com/bballdave025/dwb-ip-notes/blob/main/IP_Plus_Vision_-_Pocket_Cocktail_Party_BSS_ICA_2026-06-24.md). <!-- May Doug have mercy on your soul! -->
+
 ## Project arc
 
 1. **Synthetic pentagon band**
@@ -107,7 +110,7 @@ $$
 s^{(i)}(t)=e^{(i)}(t)\sum_{k=1}^{K} c^{(i)}_k \sin(2\pi k f^{(i)} t).
 $$
 
-The snare drum is modeled in this Experiment 0.0 experiment as a sort of random pitched source. 
+The snare drum is modeled in this Experiment 0.0 experiment as a sort of random pitched source. In further experiments, it is 
 
 The synthetic ensemble is loosely inspired by Yellowcard-style instrumentation: voice, violin, guitar, bass, and drums. Go [Yellowcard](https://www.yellowcardband.com)!
 
@@ -121,12 +124,12 @@ Our synthetic band can be represented simply as situation like this:
      voice     guitar
 
 
-violin              snare
+violin             snare
 
            bass
 ```
 
-Where our bass is being represented by a piano.
+Where our bass part is being played by a piano.
 
 For a regular pentagon, the diagonal is $\varphi$ times the side length:
 
@@ -148,17 +151,25 @@ $$
 0.124 \approx \frac{0.200}{1.618}.
 $$
 
-For a microphone at the center of the pentagon and in the same plane, the distance to any instrument is the circumradius. Dividing the pentagon into five triangles, each interior triangle side is a circumradius, whose length we will denote as $R$, and each interior angle is $\frac{2\pi}{5}$. The other two angles of each interior (isosceles) triangle are each $\left(\frac{1}{2}\right)\left(\pi - \frac{2\pi}{5} \right). If we take $L$ as the distance between two adjacent instruments, by the law of sines, 
+**For a microphone at the center of the pentagon and in the same plane**, the distance to any instrument is the circumradius. Dividing the pentagon into five triangles, we get interior triangles, each of which has as a side side length (by definition) a circumradius. Se will denote the distance covered by a circumradius as $R$, and each interior angle is $\frac{2\pi}{5}$. The other two angles of each interior (isosceles) triangle are each $\left(\frac{1}{2}\right)\left(\pi - \frac{2\pi}{5} \right)$, using the fact that the interior angles of a triangle sum to $\pi$ radians. If we take $L$ as the distance between two adjacent instruments, by the law of sines,
 
+$$
+\frac{R}{\sin \left(\frac{3\pi}{10}\right)} = \frac{L}{\sin \left(\frac{3\pi}{5}\right)}
+$$
 
+Which means<sup>[1]</sup>,
 
-For an overhead microphone above the pentagon center,
+$$
+\frac{R}{L} = \frac{\frac{1+\sqrt{5}}{4}}{\frac{\sqrt{10 + 2 \sqrt{5}}}{4}}
+$$
+
+**For an overhead microphone above the pentagon center**,
 
 $$
 r_{\mathrm{overhead}}=\sqrt{R^2+h^2},
 $$
 
-so every source is equally distant from that overhead microphone.
+where $h$ is the height of the microphone normal to the plane of the pentagon, so every source is equally distant from that overhead microphone.
 
 ## Source-First Modeling
 
@@ -201,19 +212,41 @@ $$
 \mathbf{X} = \mathbf{A}\mathbf{S}
 $$
 
+or, equivalently, in Einstein notation,
+
+$$
+X^i{}_j=A^i{}_mS^m{}_j
+$$
+
+Here the repeated index $m$ is summed, while $i$ and $j$ remain as the free
+indices of the result. Some might be more accustomed to seeing such an operation as
+
+$$
+X = [x_{ij}], \qquad A = [a_{im}], \qquad S = [s_{mj}], \\
+\mathbf{X} = \mathbf{A}\mathbf{S} \Leftrightarrow x_{ij} = \sum_{m=1}^d a_{im} s_{mj}
+$$
+
+where $d$ is the dimensionality of $\mathbf{A}$'s rows as well as that of $\mathbf{S}$'s columns.
+
+All representations of matrix multiplication shown here are equivalent.
+
 ### Source type &mdash; harmonic
 
-As they were in the Experiment 0.0, the harmonic sources (pitched instruments) is generated as harmonic partials:
+As they were in Experiment 0.0, the harmonic sources (pitched instruments) is generated as harmonic partials:
 
 $$
 s^{(i)}(t)=e^{(i)}(t)\sum_{k=1}^{K} c^{(i)}_k \sin(2\pi k f^{(i)} t)
 $$
 
-The snare source is intentionally modeled differently from the pitched
-instruments. Rather than using a harmonic overtone array, it is generated
-as a short broadband noise burst with exponential decay, optionally mixed
-with a weak C4-centered resonant tone. This makes the snare useful as a
-non-Gaussian, transient-heavy source for ICA.
+where the superscript, ${}^{(i)}$ is put in parentheses to show it wonn't participate in any sums.
+
+### Source type &mdash; snare
+
+After Experiment 0.0, the snare source is intentionally modeled differently 
+from the pitched instruments. Rather than using a harmonic overtone array, 
+it is generated as a short broadband noise burst with exponential decay, 
+optionally mixed with a weak C4-centered resonant tone. This makes the snare 
+useful as a non-Gaussian, transient-heavy source for ICA.
 
 ## Repository layout
 
@@ -263,3 +296,8 @@ pytest
 - [ ] Align channels using clap peaks.
 - [ ] Run first real-recording ICA attempt.
 - [ ] Write failure-mode notes.
+- [ ] Discuss briefly the modern DNN solution approaches.
+
+## Footnotes
+
+[1]: For the calculation of $\sin \left(\frac{2\pi}{5}\right)$, the fact that the goal was to find interior angles of a regular polygon led immediately to the strategy of using methods involving roots of unity. After doing this, I had met 99.9% of the quota of algebra errors allowed by my brain before complete shutdown. Therefore, for the calculation of $sin \left(\frac{3\pi}{10}\right)$, I used what I'm now coining as the Tim Berners-Lee method &mdash; using the internet. You could use double- and triple-angle identities, but from what we've done, it would probably be best to bisect the interior angle of one of our RRL triangles in the interior of the pentagon, notice that we have a right triangle with one complementary angle being $\frac{3\pi}{10}$, drop a normal from the point where the pentagon side, L, was bisected to one of the circumradii... Actually, you can just go to the `bballdave025/pocket-cocktail-party/docs/math/pentagon_trig.md` to get all the details concerning the calculation of both sine values.

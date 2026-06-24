@@ -56,7 +56,10 @@ def one_second_on_off_envelope(
       on_s: float = 1.0,
       off_s: float = 1.0,
     ) -> np.ndarray:
-  """Return an envelope that alternates one second on and one second off."""
+  '''
+  Return an envelope that alternates one second on and one second off.
+  '''
+  
   num_samples = int(round(duration_s * sample_rate))
   t = np.arange(num_samples) / sample_rate
   period = on_s + off_s
