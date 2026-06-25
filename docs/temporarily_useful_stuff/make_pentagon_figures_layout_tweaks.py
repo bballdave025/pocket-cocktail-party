@@ -23,6 +23,8 @@ that the type hint does not specify the 2D nature of what's expected.
 '''
 #############################################################################
 
+import pathlib
+
 import matplotlib.pyplot as plt
 
 from matplotlib.patches import Arc
@@ -153,7 +155,7 @@ def make_roots_of_unity_figure() -> tuple[Figure, Axes]:
   Create a figure showing the relationship between the pentagon and
   the fifth roots of unity, related to $z^5 = 1$
   
-  This figureseful for showing the signs of the real parts of
+  This figure is useful for showing the signs of the real parts of
   $z$, $z^2$, $z^3$, $z^4$, $z^5$, and likely for other things.
 
   It is mainly used to illustrate a document showing the math used
@@ -277,7 +279,7 @@ def make_pentagon_triangle_figure() -> tuple[Figure, tuple[Axes, Axes]]:
   fig, axes = plt.subplots(
       nrows=2,
       ncols=1,
-      figsize=(7, 10),
+      figsize=(7, 12),
   )
 
   top_ax = axes[0]
@@ -474,22 +476,22 @@ def make_pentagon_triangle_figure() -> tuple[Figure, tuple[Axes, Axes]]:
   )
 
   bottom_ax.text(
-      0.48,
-      0.05,
+      0.50,
+      0.13,
       r"$AD$ bisects $\angle A$",
       fontsize=11,
   )
 
   bottom_ax.text(
-      0.66,
-      -0.28,
+      0.70,
+      -0.38,
       r"$DE \perp AC$",
       fontsize=11,
   )
 
   bottom_ax.text(
-      0.77,
-      -0.03,
+      0.84,
+      -0.04,
       r"$DC=L/2$",
       fontsize=11,
   )
@@ -501,8 +503,8 @@ def make_pentagon_triangle_figure() -> tuple[Figure, tuple[Axes, Axes]]:
 
   bottom_ax.set_aspect("equal")
   bottom_ax.set_xlim(-0.15, 1.15)
-  bottom_ax.set_ylim(-0.75, 0.75)
-  bottom_ax.grid(True, linestyle=":", alpha=0.35)
+  bottom_ax.set_ylim(-0.85, 0.80)
+  bottom_ax.grid(True, linestyle=":", alpha=0.18)
 
   fig.tight_layout()
 

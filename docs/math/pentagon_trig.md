@@ -372,6 +372,62 @@ we have
 
 $$\sin\left(\frac{3\pi}{10}\right) = \frac{\phi}{2}.$$
 
+## Part 3: Skipping a vertex and the D chord
+
+Just some starting material for now.
+
+```text
+side chord L: 
+  central angle = 2π/5 
+  half-angle = π/5 
+  L/2 = R sin(π/5) 
+  L = 2R sin(π/5) 
+diagonal chord D: 
+  central angle = 4π/5 
+  half-angle = 2π/5 
+  D/2 = R sin(2π/5) 
+  D = 2R sin(2π/5) 
+therefore: 
+  D/L = sin(2π/5) / sin(π/5) 
+      = 2 cos(π/5) 
+      = φ
+```
+
+**Chord-length from a central angle.** (or whatever that angle is called)
+
+- Take two radii from the center to the two endpoints of a chord.
+  - Call the chord length $c$.
+  - $\theta$ being the angle between the two radii. 
+  - That gives an isosceles triangle. 
+- Drop the perpendicular from the center to the chord. 
+  - In an isosceles triangle, that perpendicular bisects the chord and the central angle. 
+  - Then you have a right triangle with: 
+    - hypotenuse $R$, 
+    - angle $\theta / 2$, and 
+    - opposite side $c/2$
+
+SOH CAH TOA, and we have H and O, so SOH means sine.
+
+`>> picture of right triangle in the context of the <<`<br/>
+`>> pentagon and the circumscribing circle here     <<`
+
+`>> picture of _just_ the right triangle here       <<`
+
+$$sin\left(\theta / 2 \right) = \frac{c / 2}{R}$$
+
+leads to
+
+$$c = 2 R \sin \left(\theta / 2\right)$$
+
+Side chord uses $\theta = 2 \pi / 5$; diagonal chord uses $\theta = 4 \pi / 5$.
+
+$$D = 2 R \sin \left(\left(\frac{1}{2}\right)\left(\frac{4\pi}{5}\right)\right) = 2 R \sin \left(\frac{2\pi}{5}\right)$$
+
+So I did the law of sines with two crazy angles. I could have used chord length to do the sine of just one angle. I'm not bitter, it's just that now, I know. It was fun to do the roots of unity. Actually, now that I'm looking at it, I would have had to get $R$ anyway, and the $D$ calculation is going to use $\sin\left(\frac{2\pi}{5}\right)$, which is the first one I found. I don't even know that I need to get the sine of $\pi / 5$, but I think I will anyway, or at least I'll follow kamMA while he does. And we'll find whatever mistake I made above ; )
+
+***I'll have to have kamMA take care of the details for the 10 roots of unity, since we're getting the sine of $2 \pi / 10$. Or we can find another way.***
+
+
 ## Code footnotes
 
 ### CF.1. Code for roots-of-unity figure
@@ -499,15 +555,18 @@ if __name__ == "__main__":
     ##          (for anyone wanting to make the figures in CWD, no repo)
   do_in_repo_save = True
   
+  if "__file__" not in globals():
+    do_in_repo_save = False
+  ##endof:  if
+  
   output_path_roots_of_unity = pathlib.Path.cwd() / filename_rou_only
-  )
     ##
   ####endof:  Hardcoding
   
   if do_in_repo_save:
     #  This assignment assumes that the script is run from
     #+ `scripts/make_pentagon_figures.py`
-    repo_root = Path(__file__).resolve().parents[1]
+    repo_root = pathlib.Path(__file__).resolve().parents[1]
   
     output_path_roots_of_unity = repo_root / "figures" / filename_rou_only
   ##endof:  if/else not_do_in_repo_save
@@ -526,7 +585,6 @@ if __name__ == "__main__":
   )
 
   plt.show()
-  
 ##endof:  if
 ```
 
@@ -964,6 +1022,10 @@ if __name__ == "__main__":
     ##          (for anyone wanting to make the figures in CWD, no repo)
   do_in_repo_save = True
   
+  if "__file__" not in globals():
+    do_in_repo_save = False
+  ##endof:  if
+  
   output_path_triangle_figure = pathlib.Path.cwd() / filename_tf_only
     ##
   ####endof:  Hardcoding
@@ -971,7 +1033,7 @@ if __name__ == "__main__":
   if do_in_repo_save:
     #  This assignment assumes that the script is run from
     #+ `scripts/make_pentagon_figures.py`
-    repo_root = Path(__file__).resolve().parents[1]
+    repo_root = pathlib.Path(__file__).resolve().parents[1]
   
     output_path_triangle_figure = repo_root / "figures" / filename_tf_only
   ##endof:  if do_in_repo_save
@@ -984,7 +1046,7 @@ if __name__ == "__main__":
   fig_tf, (top_ax_tf, bottom_ax_tf) = make_pentagon_triangle_figure()
 
   fig_tf.savefig(
-      output_path_triange_figure,
+      output_path_triangle_figure,
       dpi=200,
       bbox_inches="tight",
   )
