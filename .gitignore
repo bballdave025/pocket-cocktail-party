@@ -18,6 +18,9 @@ venv/
 ENV/
 .venv_pocket_cp
 
+# build logs for Termux science stuff
+pocketcp_*_build.log
+
 # Audio/data artifacts can be large or private.
 data/raw/*
 data/interim/*

@@ -1,13 +1,18 @@
-'''Run the first synthetic FastICA smoke test.'''
+#!/usr/bin/env python3
+
+'''
+Run the first synthetic FastICA smoke test.
+'''
 
 from __future__ import annotations
 
 import numpy as np
+from scipy.io import wavfile
 
 from pocket_cocktail_party.geometry import pentagon_bleed_matrix
 from pocket_cocktail_party.ica import run_fastica
 from pocket_cocktail_party.metrics import absolute_correlation_matrix
-from pocket_cocktail_party.synthesis import (
+from pocket_cocktail_party.sources import (
   InstrumentSpecOld,
   harmonic_source,
   one_second_on_off_envelope,
@@ -32,6 +37,12 @@ def main() -> None:
       harmonic_source(spec, duration_s, sample_rate, envelope)
       for spec in specs
     ]
+  )
+
+  wavfile.write(
+    "piano_bass.wav",
+    sample_rate,
+    sources[0].astype(np.float32)
   )
 
   mixing = pentagon_bleed_matrix()
