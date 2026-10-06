@@ -20,6 +20,7 @@ ENV/
 
 # build logs for Termux science stuff
 pocketcp_*_build.log
+pocketcp_*_build_[0-9T_-]*.log
 
 # Audio/data artifacts can be large or private.
 data/raw/*
