@@ -36,6 +36,10 @@ figures/*
 !figures/pentagon_angles_roots_of_unity.png
 !figures/pentagon_triangle_derivation.png
 
+# Local backups
+**/*.[0-9]*.bak
+*.[0-9]*.bak
+
 # Jupyter/IPython local state (Jupyter for presentation/portfolio)
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
