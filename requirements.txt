@@ -1,9 +1,20 @@
-jupyterlab
-ipykernel
+-e .[dev,release]
 
-numpy
-scikit-learn
-matplotlib
+##  What follows was commented out 2026-09-22. -DWB
 
-nbformat
-nbconvert[webpdf]
+#numpy
+#scipy
+#scikit-learn
+#matplotlib
+#soundfile
+
+#pytest
+#ruff
+
+#bump-my-version
+
+#ipykernel
+#jupyter
+#jupyterlab
+#nbformat
+#nbconvert[webpdf]

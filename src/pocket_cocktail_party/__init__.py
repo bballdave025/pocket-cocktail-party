@@ -4,8 +4,10 @@ Blind source separation experiments through geometry, harmonics, and signal
 mixing.
 """
 
+from importlib.metadata import PackageNotFoundError, version
+
 from .geometry import pentagon_bleed_matrix
-from .synthesis import (
+from .sources import (
   InstrumentSpec,
   InstrumentSpecOld,
   make_source_from_spec,
@@ -21,7 +23,15 @@ from .mixing import (
   mix_to_mono,
 )
 
+
+try:
+  __version__ = version("pocket-cocktail-party")
+except PackageNotFoundError:
+  __version__ = "0.0.0+not-installed"
+##endof: try/except
+
 __all__ = [
+  "__version__",
   "InstrumentSpec",
   "InstrumentSpecOld",
   "StereoPan",

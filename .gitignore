@@ -18,6 +18,10 @@ venv/
 ENV/
 .venv_pocket_cp
 
+# build logs for Termux science stuff
+pocketcp_*_build.log
+pocketcp_*_build_[0-9T_-]*.log
+
 # Audio/data artifacts can be large or private.
 data/raw/*
 data/interim/*
@@ -31,6 +35,10 @@ figures/*
 !figures/README.md
 !figures/pentagon_angles_roots_of_unity.png
 !figures/pentagon_triangle_derivation.png
+
+# Local backups
+**/*.[0-9]*.bak
+*.[0-9]*.bak
 
 # Jupyter/IPython local state (Jupyter for presentation/portfolio)
 .ipynb_checkpoints/

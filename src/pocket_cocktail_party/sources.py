@@ -37,10 +37,10 @@ class InstrumentSpec:
   name: str
   kind: InstrumentKind
   
-  fundamental_hz: float
-  partials: tuple[float, ...]
-  
-  center_hz: float | None=None
+  fundamental_hz: float | None = None
+  partials: tuple[float, ...] | None = None
+
+  center_hz: float | None = None
   noise_weight: float=0.90
   tone_weight: float=0.10
   decay_rate: float=35.0
@@ -164,7 +164,7 @@ def make_snare_source(
       decay_rate: float=35.0,
       seed: int=0,
     ) -> np.ndarray:
-  '''
+  r'''
   Create a simple snare-like source.
 
   The snare is modeled as a broadband noise burst with a short decay,
@@ -250,49 +250,30 @@ def make_snare_hit_source(
 ##endof:  make_snare_hit_source
 
 
-
-
-def default_instruments() -> list[InstrumentSpec]:
-  '''
-  Return the first C-add-9-ish synthetic ensemble.
-  
-  Note, matches the mix in run_synthetic_0p0.py
-  '''
-  
-  return [
-    InstrumentSpecOld("piano_bass", 65.41, (1.00, 0.35, 0.18, 0.10, 0.05)),
-    InstrumentSpecOld("guitar", 196.00, (1.00, 0.50, 0.30, 0.18, 0.08)),
-    InstrumentSpecOld("voice", 329.63, (1.00, 0.55, 0.25, 0.10, 0.05)),
-    InstrumentSpecOld("violin", 587.33, (1.00, 0.75, 0.55, 0.35, 0.20)),
-    InstrumentSpecOld("snare_tone", 261.63, (1.00, 0.15, 0.08, 0.03, 0.02)),
-  ]
-##endof:  default_instruments
-
-
 DEFAULT_INSTRUMENTS = [
   InstrumentSpec(
     name="piano_bass",
     kind="harmonic",
     fundamental_hz=65.41,
-    partials=[1.00, 0.35, 0.18, 0.10, 0.05],
+    partials=(1.00, 0.35, 0.18, 0.10, 0.05),
   ),
   InstrumentSpec(
     name="guitar",
     kind="harmonic",
     fundamental_hz=196.00,
-    partials=[1.00, 0.50, 0.30, 0.18, 0.08],
+    partials=(1.00, 0.50, 0.30, 0.18, 0.08),
   ),
   InstrumentSpec(
     name="voice",
     kind="harmonic",
     fundamental_hz=329.63,
-    partials=[1.00, 0.55, 0.25, 0.10, 0.05],
+    partials=(1.00, 0.55, 0.25, 0.10, 0.05),
   ),
   InstrumentSpec(
     name="violin",
     kind="harmonic",
     fundamental_hz=587.33,
-    partials=[1.00, 0.75, 0.55, 0.35, 0.20],
+    partials=(1.00, 0.75, 0.55, 0.35, 0.20),
   ),
   InstrumentSpec(
     name="snare",
@@ -305,3 +286,11 @@ DEFAULT_INSTRUMENTS = [
     seed=123,
   ),
 ]
+
+def default_instruments() -> list[InstrumentSpec]:
+  '''
+  Return a new list containing the current synthetic ensemble.
+  '''
+
+  return list(DEFAULT_INSTRUMENTS)
+##endof:  default_instruments
